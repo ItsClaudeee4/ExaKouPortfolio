@@ -1,0 +1,344 @@
+.mainProjects {
+  max-width: 1100px;
+  display: flex;
+  flex-direction: column;
+  margin: 0 auto 200px auto;
+  align-items: center;
+}
+
+.mainProjects ul {
+  display: flex;
+  gap: 20px;
+  list-style: none;
+  margin-bottom: 20px;
+}
+
+.mainProjects ul li {
+  padding: 8px 20px;
+  border-radius: 20px;
+  font-family: "Inter", sans-serif;
+  font-weight: 500;
+  color: white;
+  cursor: pointer;
+  font-size: 14px;
+  transition: all 0.2s ease-in-out;
+}
+
+.mainProjects ul li.clicked {
+  border: 1px solid #f99917;
+  background-color: #f99917;
+  color: #8b2500;
+}
+
+.mainProjects ul li.clicked:hover {
+  border: 1px solid #4b2c00;
+  background-color: #4b2c00;
+  color: black;
+}
+
+.mainProjects ul li.unClicked {
+  border: 1px solid #f99917;
+  background-color: #8b2500;
+  color: #f99917;
+}
+
+.mainProjects ul li.unClicked:hover {
+  border: 1px solid #f99917;
+  background-color: #f99917;
+  color: #8b2500;
+}
+
+.portfolio-container {
+  min-height: 100vh;
+  background: linear-gradient(to bottom right, #0f172a, #1e293b, #064e3b);
+  padding: 1.5rem;
+}
+
+.portfolio-wrapper {
+  max-width: 80rem;
+  margin: 0 auto;
+}
+
+.filter-buttons {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  margin-bottom: 3rem;
+  justify-content: center;
+}
+
+.filter-button {
+  padding: 0.5rem 1.5rem;
+  border-radius: 9999px;
+  transition: all 0.3s ease;
+  border: 1px solid;
+  cursor: pointer;
+  font-weight: 500;
+}
+
+.filter-button.active {
+  background-color: #10b981;
+  color: white;
+  border-color: #10b981;
+}
+
+.filter-button.active:hover {
+  background-color: #059669;
+}
+
+.filter-button.inactive {
+  background-color: rgba(30, 41, 59, 0.5);
+  border-color: rgba(16, 185, 129, 0.3);
+  color: white;
+}
+
+.filter-button.inactive:hover {
+  background-color: rgba(16, 185, 129, 0.1);
+  border-color: #10b981;
+}
+
+.projects-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 60px;
+  margin-top: 30px;
+}
+
+.project-card {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 20px;
+  max-height: 400px;
+  transition: all 0.5s ease;
+  align-items: stretch; /* equal height for children */
+}
+
+.project-card.normal {
+  grid-template-areas: "image details";
+}
+
+.project-card.reverse {
+  grid-template-areas: "details image";
+}
+.project-image {
+  grid-area: image;
+}
+
+.project-content {
+  grid-area: details;
+}
+@media (max-width: 768px) {
+  .project-card.normal,
+  .project-card.reverse {
+    grid-template-columns: 1fr;
+    grid-template-areas:
+      "image"
+      "details";
+  }
+}
+/* ========== IMAGE + BUBBLE EFFECT ========== */
+.project-image {
+  border-radius: 16px;
+
+  position: relative;
+  overflow: hidden;
+}
+
+.project-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* Bubble scale animation */
+@keyframes bubbleScale {
+  0% {
+    transform: scale(1);
+  }
+  40% {
+    transform: scale(1.02);
+  }
+  70% {
+    transform: scale(0.98);
+  }
+  100% {
+    transform: scale(1.03);
+  }
+}
+
+.project-image-overlay {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 50%;
+  background: linear-gradient(to top, rgba(0, 0, 0, 0.6), transparent);
+  pointer-events: none;
+  transition: opacity 0.1s ease;
+  z-index: 1;
+}
+
+/* ========== CONTENT ========== */
+.project-content {
+  grid-area: details;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 2rem;
+}
+
+.project-title {
+  font-size: 24px;
+  margin-bottom: 16px;
+  margin-top: -30px;
+  color: white;
+  font-family: "Space Grotesk", sans-serif;
+  font-weight: 600;
+}
+
+.project-description {
+  flex-grow: 1;
+  color: #d1d5db;
+  margin-bottom: 1.5rem;
+  font-family: "Inter", sans-serif;
+  font-weight: 400;
+  line-height: 1.5;
+}
+
+.challenge-section h3,
+.solution-section h3 {
+  margin-top: 1rem;
+  margin-bottom: 0.5rem;
+  color: #f99917;
+  font-family: "Space Grotesk", sans-serif;
+  font-weight: 600;
+}
+
+.challenge-section p,
+.solution-section p {
+  color: #d1d5db;
+  margin-bottom: 1rem;
+  font-family: "Inter", sans-serif;
+  font-weight: 400;
+  line-height: 1.5;
+}
+
+.project-image-title {
+  width: 100%;
+  z-index: 2;
+  position: absolute;
+  bottom: 20px;
+  left: 20px;
+  padding: 10px;
+  font-family: "Space Grotesk", sans-serif;
+  color: white;
+  font-size: 24px;
+  font-weight: 600;
+}
+/* ================= RESPONSIVE FIXES ================= */
+
+/* Tablets */
+@media (max-width: 1024px) {
+  .mainProjects {
+    padding: 0 20px;
+  }
+
+  .project-title {
+    font-size: 20px;
+  }
+
+  .project-description {
+    font-size: 15px;
+  }
+
+  .project-image-title {
+    font-size: 20px;
+  }
+
+  .mainProjects ul {
+    flex-wrap: wrap;
+    gap: 12px;
+    justify-content: center;
+  }
+
+  .mainProjects ul li {
+    font-size: 13px;
+    padding: 6px 16px;
+  }
+}
+
+/* Mobile */
+@media (max-width: 768px) {
+  .projects-grid {
+    gap: 40px;
+  }
+
+  .project-card {
+    max-height: none; /* allow full height */
+  }
+
+  .project-content {
+    padding: 1.5rem;
+  }
+
+  .project-title {
+    font-size: 18px;
+    margin-top: -10px;
+  }
+
+  .project-description {
+    font-size: 14px;
+  }
+
+  .challenge-section h3,
+  .solution-section h3 {
+    font-size: 16px;
+  }
+
+  .challenge-section p,
+  .solution-section p {
+    font-size: 14px;
+  }
+
+  .project-image-title {
+    font-size: 18px;
+  }
+
+  .mainProjects ul li {
+    font-size: 12px;
+    padding: 6px 12px;
+  }
+}
+
+/* Small mobile */
+@media (max-width: 480px) {
+  .mainProjects {
+    padding: 0 12px;
+    margin-bottom: 30px;
+  }
+
+  .project-content {
+    padding: 1rem;
+  }
+
+  .project-title {
+    font-size: 16px;
+  }
+
+  .project-description {
+    font-size: 13px;
+  }
+
+  .project-image-title {
+    font-size: 16px;
+  }
+
+  .mainProjects ul {
+    gap: 8px;
+  }
+
+  .mainProjects ul li {
+    font-size: 11px;
+    padding: 5px 10px;
+  }
+}

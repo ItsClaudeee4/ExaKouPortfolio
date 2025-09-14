@@ -1,0 +1,155 @@
+.mainSkill {
+  padding: 50px 20px;
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+.skills-content {
+  padding: 3rem;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.skills-section {
+  margin-bottom: 4rem;
+}
+
+.section-title {
+  color: #f99917;
+  font-size: 20px;
+  font-weight: 600;
+  margin-bottom: 10px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  text-align: center;
+}
+
+.skills-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 2rem;
+}
+
+.skill-card {
+  border-radius: 8px;
+  padding: 2rem 1.5rem;
+  text-align: center;
+  border: 1px solid #f99917;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.skill-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 25px #f99917;
+}
+
+.skill-icon {
+  font-size: 3rem;
+  margin-bottom: 1rem;
+  width: 70px;
+  height: 70px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.skill-icon img {
+  width: 100%;
+  height: auto;
+}
+
+.skill-name {
+  font-size: 1.2rem;
+  font-weight: 600;
+  margin-bottom: 1.5rem;
+  color: #e0e0e0;
+}
+
+.progress-bar {
+  width: 100%;
+  height: 4px;
+  background-color: #523409;
+  border-radius: 2px;
+  margin-bottom: 1rem;
+  overflow: hidden;
+}
+
+.progress-fill {
+  height: 100%;
+  background: #f99917;
+  border-radius: 2px;
+  transition: width 0.8s ease-in-out;
+  animation: fillProgress 2s ease-in-out;
+}
+
+@keyframes fillProgress {
+  from {
+    width: 0%;
+  }
+}
+
+.skill-percentage {
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: #f99917;
+}
+
+/* ========= Responsive Design ========= */
+/* ========= Responsive Design ========= */
+
+@media (max-width: 992px) {
+  .skills-content {
+    padding: 2.5rem 2rem;
+  }
+
+  .skills-grid {
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 1.5rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .skills-content {
+    padding: 2rem 1.5rem;
+  }
+
+  .skills-grid {
+    grid-template-columns: 1fr 1fr; /* 2 columns */
+    gap: 1.5rem;
+  }
+
+  .section-title {
+    font-size: 1.4rem;
+  }
+}
+
+/* ✅ Force 2 columns even on small screens */
+@media (max-width: 576px) {
+  .skills-grid {
+    grid-template-columns: 1fr 1fr; /* keep 2 columns */
+    gap: 1rem;
+  }
+  .skills-section {
+    margin-bottom: 0;
+  }
+  .skill-card {
+    padding: 1.2rem 0.8rem;
+  }
+
+  .skill-icon {
+    font-size: 2rem;
+    width: 50px;
+    height: 50px;
+  }
+
+  .skill-name {
+    font-size: 0.95rem;
+  }
+
+  .skill-percentage {
+    font-size: 0.85rem;
+  }
+}

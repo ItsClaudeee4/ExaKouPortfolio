@@ -1,0 +1,287 @@
+/* ================================
+   BASE LAYOUT
+================================ */
+.mainAbout {
+  max-width: 1100px;
+  display: flex;
+  flex-direction: column;
+  margin: 0 auto 200px auto;
+  padding: 0 16px; /* prevent content touching screen edges */
+  box-sizing: border-box;
+}
+
+.about-container {
+  width: 100%;
+  color: #ffffff;
+  font-family: "Inter", -apple-system, BlinkMacSystemFont, sans-serif;
+  position: relative;
+  margin: 0;
+  box-sizing: border-box;
+  display: grid;
+}
+
+.about-content {
+  max-width: 1400px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 80px;
+  align-items: start;
+}
+
+.about-left {
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+}
+
+.about-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+}
+
+.about-title {
+  font-size: 20px;
+  font-weight: 700;
+  color: #f99917;
+  font-family: "Space Grotesk", sans-serif;
+  margin: 0;
+  line-height: 1.2;
+}
+
+.btnB.about {
+  font-size: 16px;
+  padding: 8px 16px;
+  border: #f99917 1px solid;
+}
+
+.experience-badge {
+  background: rgba(0, 212, 170, 0.1);
+  border: 1px solid #00d4aa;
+  color: #00d4aa;
+  padding: 12px 24px;
+  border-radius: 8px;
+  font-size: 1rem;
+  font-weight: 500;
+  width: fit-content;
+}
+
+.about-description {
+  gap: 24px;
+}
+
+.about-description p {
+  font-size: 16px;
+  margin-bottom: 40px;
+  line-height: 1.7;
+  color: #ffffffb7;
+}
+
+.AboutBtn {
+  min-width: 100px !important;
+}
+
+.about-right {
+  display: flex;
+  flex-direction: column;
+  gap: 60px;
+}
+
+.section-title {
+  font-size: 20px;
+  font-weight: 600;
+  font-family: "Space Grotesk", sans-serif;
+  color: #f99917;
+  margin: 0 0 32px 0;
+  text-transform: none !important;
+}
+
+.technologies-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 24px;
+}
+
+.tech-icon {
+  display: grid;
+  place-items: center;
+  width: 65px;
+  height: 65px;
+  transition: all 0.3s ease;
+  cursor: pointer;
+  border-radius: 16px;
+}
+
+.tech-icon img {
+  width: 60px;
+}
+
+.tech-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+  transition: all 0.3s ease;
+}
+
+.tech-item:hover {
+  transform: scale(1.1) translateY(-5px);
+}
+
+.tech-name {
+  font-size: 14px;
+  font-weight: 500;
+  color: #ffffffe7;
+  text-align: center;
+}
+
+.expertise-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 32px;
+}
+
+.expertise-item {
+  display: flex;
+  flex-direction: column;
+  background-color: #4b150182;
+  border: rgba(255, 255, 255, 0.236) 1px solid;
+  padding: 10px 10px 0 10px;
+  border-radius: 12px;
+  gap: 10px;
+}
+
+.expertise-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.expertise-skill {
+  font-size: 14px;
+  font-weight: 500;
+  color: #ffffffd4;
+}
+
+.expertise-percentage {
+  font-size: 1rem;
+  font-weight: 600;
+  color: #f99917;
+}
+
+.progress-bar {
+  width: 100%;
+  height: 8px;
+  background: #4b1501;
+  border-radius: 4px;
+  overflow: hidden;
+}
+
+.progress-fill {
+  height: 100%;
+  background: #f99917;
+  border-radius: 4px;
+  transition: width 1.5s ease-in-out;
+  animation: fillProgress 2s ease-in-out;
+}
+
+@keyframes fillProgress {
+  from {
+    width: 0%;
+  }
+}
+
+/* ================================
+   TABLETS (≤1024px)
+================================ */
+@media (max-width: 1024px) {
+  .about-content {
+    grid-template-columns: 1fr;
+    gap: 60px;
+  }
+
+  .technologies-grid {
+    grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+    gap: 20px;
+  }
+
+  .expertise-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+/* ================================
+   SMALL TABLETS / LARGE MOBILES (≤768px)
+================================ */
+@media (max-width: 768px) {
+  .about-container {
+    padding: 30px 15px;
+  }
+
+  .about-title {
+    font-size: 1.5rem;
+  }
+
+  .section-title {
+    font-size: 1.3rem;
+  }
+
+  .technologies-grid {
+    grid-template-columns: repeat(auto-fit, minmax(80px, 1fr));
+    gap: 16px;
+  }
+
+  .expertise-grid {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+
+  .about-description p {
+    font-size: 0.95rem;
+  }
+}
+
+/* ================================
+   MOBILE (≤480px)
+================================ */
+@media (max-width: 480px) {
+  .about-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 12px;
+  }
+  .mainAbout {
+    margin-bottom: 30px;
+    padding: 20px;
+  }
+
+  .experience-badge {
+    padding: 8px 16px;
+    font-size: 0.85rem;
+  }
+
+  .technologies-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 12px;
+  }
+
+  .tech-item {
+    padding: 12px;
+  }
+
+  .tech-icon {
+    width: 50px;
+    height: 50px;
+  }
+
+  .tech-icon img {
+    width: 40px;
+  }
+
+  .about-description p {
+    font-size: 0.9rem;
+    line-height: 1.5;
+  }
+}
