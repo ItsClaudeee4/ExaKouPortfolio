@@ -3,7 +3,9 @@
   height: 100vh;
   width: 100%;
 }
-
+.main {
+  overflow: hidden;
+}
 .main section {
   display: flex;
   flex-direction: column;
