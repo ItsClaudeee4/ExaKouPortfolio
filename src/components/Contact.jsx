@@ -1,36 +1,35 @@
-import React, { useState } from "react";
+import React, { useState, useRef } from "react";
 import SectionTitle from "./SectionTitle";
 import "./Contact.css";
+import "./Btn.css";
 import { IoPersonOutline } from "react-icons/io5";
 import { CiMail, CiChat1 } from "react-icons/ci";
 import { FaXTwitter } from "react-icons/fa6";
 import { FaTiktok } from "react-icons/fa";
 import { IoLogoYoutube } from "react-icons/io";
-import Btn from "./Btn";
 import { motion } from "framer-motion";
 import { FaInstagram } from "react-icons/fa";
 import { SiFiverr } from "react-icons/si";
+import emailjs from "@emailjs/browser";
 
 function Contact() {
-  const [formData, setFormData] = useState({
-    name: "",
-    email: "",
-    message: "",
-  });
-
-  const handleInputChange = (e) => {
-    const { name, value } = e.target;
-    setFormData((prev) => ({
-      ...prev,
-      [name]: value,
-    }));
-  };
-
-  const handleSubmit = (e) => {
+  const form = useRef();
+  const sendEmail = (e) => {
     e.preventDefault();
-    console.log("Form submitted:", formData);
+    emailjs
+      .sendForm(
+        "service_p55y9hi",
+        "template_xqyf6rh",
+        form.current,
+        "jbtRtg7ISg9tijnD1"
+      )
+      .then(() => {
+        alert("Message sent successfuly");
+      })
+      .catch((err) => {
+        alert("failed to send message", err);
+      });
   };
-
   return (
     <motion.main
       className="mainContact"
@@ -54,16 +53,15 @@ function Contact() {
             <h2 className="form-title">Send a Message</h2>
 
             <motion.form
-              onSubmit={handleSubmit}
               className="contact-form"
               initial="hidden"
               whileInView="visible"
+              ref={form}
+              onSubmit={sendEmail}
               viewport={{ once: true }}
               variants={{
                 hidden: {},
-                visible: {
-                  transition: { staggerChildren: 0.2 },
-                },
+                visible: { transition: { staggerChildren: 0.2 } },
               }}
             >
               {/* Name */}
@@ -88,8 +86,6 @@ function Contact() {
                     type="text"
                     id="name"
                     name="name"
-                    value={formData.name}
-                    onChange={handleInputChange}
                     placeholder="John Doe"
                     className="form-input"
                     required
@@ -119,8 +115,6 @@ function Contact() {
                     type="email"
                     id="email"
                     name="email"
-                    value={formData.email}
-                    onChange={handleInputChange}
                     placeholder="john@example.com"
                     className="form-input"
                     required
@@ -149,8 +143,6 @@ function Contact() {
                   <textarea
                     id="message"
                     name="message"
-                    value={formData.message}
-                    onChange={handleInputChange}
                     placeholder="Tell me about your project..."
                     className="form-textarea"
                     rows="6"
@@ -167,7 +159,9 @@ function Contact() {
                 }}
                 transition={{ duration: 0.5 }}
               >
-                <Btn BtnText={"Send Message"} />
+                <button className="btnA" type="submit">
+                  Send Message
+                </button>
               </motion.div>
             </motion.form>
           </motion.div>
@@ -181,7 +175,6 @@ function Contact() {
             viewport={{ once: true }}
           >
             <h2 className="info-title">Contact Information</h2>
-
             <motion.div
               className="contact-item"
               initial={{ opacity: 0, x: 20 }}
@@ -198,25 +191,7 @@ function Contact() {
               </div>
             </motion.div>
 
-            <motion.div
-              className="connect-section"
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: 0.3 }}
-              viewport={{ once: true }}
-            >
-              <h3 className="connect-title">Let's Connect</h3>
-              <p className="connect-description">
-                Looking for a Video Editor/Account Manager who can save you time
-                and take your content to the next level? Look no further—I’m
-                available for both freelance projects and full-time
-                opportunities.
-              </p>
-              <p className="response-time">
-                I aim to reply to all inquiries within 24 hours.
-              </p>
-            </motion.div>
-
+            {/* Social Links */}
             <motion.div
               className="social-section"
               initial={{ opacity: 0, y: 20 }}
@@ -230,16 +205,17 @@ function Contact() {
                   href="https://x.com/ExaKou"
                   className="social-link"
                   aria-label="twitter"
+                  target="_blank"
+                  rel="noopener noreferrer"
                 >
-                  <FaXTwitter
-                    color="#f99917
-"
-                  />
+                  <FaXTwitter color="#f99917" />
                 </a>
                 <a
                   href="https://www.tiktok.com/@exakou"
                   className="social-link"
                   aria-label="tiktok"
+                  target="_blank"
+                  rel="noopener noreferrer"
                 >
                   <FaTiktok color="#f99917" />
                 </a>
@@ -247,6 +223,8 @@ function Contact() {
                   href="https://www.youtube.com/channel/UCTHjTEQFcwhSBIQRBkFxd3A"
                   className="social-link"
                   aria-label="youtube"
+                  target="_blank"
+                  rel="noopener noreferrer"
                 >
                   <IoLogoYoutube color="#f99917" />
                 </a>
@@ -254,6 +232,8 @@ function Contact() {
                   href="https://www.instagram.com/exakou_edit/"
                   className="social-link"
                   aria-label="instagram"
+                  target="_blank"
+                  rel="noopener noreferrer"
                 >
                   <FaInstagram color="#f99917" />
                 </a>
@@ -261,6 +241,8 @@ function Contact() {
                   href="https://ytjobs.co/talent/profile/283573?r=474"
                   className="social-link"
                   aria-label="Ytjobs"
+                  target="_blank"
+                  rel="noopener noreferrer"
                 >
                   <IoLogoYoutube color="#f99917" />
                 </a>
@@ -268,6 +250,8 @@ function Contact() {
                   href="https://www.fiverr.com/exakou/edit-funny-entertaining-high-engaging-gaming-videos-for-you?utm_medium=shared&utm_source=copy_link&utm_campaign=gig&utm_term=XqjqQD"
                   className="social-link"
                   aria-label="fiverr"
+                  target="_blank"
+                  rel="noopener noreferrer"
                 >
                   <SiFiverr color="#f99917" />
                 </a>

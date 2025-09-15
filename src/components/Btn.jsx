@@ -3,7 +3,9 @@ import "./Btn.css";
 
 function Btn({ BtnText, link }) {
   const handleClick = () => {
-    window.open(link, "_blank"); // opens in a new tab
+    // Opens external link in a new tab safely
+    const newWindow = window.open(link, "_blank", "noopener,noreferrer");
+    if (newWindow) newWindow.opener = null;
   };
 
   return (

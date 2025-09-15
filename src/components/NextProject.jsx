@@ -57,7 +57,9 @@ function NextProject() {
         }}
         viewport={{ once: true }}
       >
-        <Btn BtnText={"Get in Touch"} />
+        <a href="#contact" className="btnA">
+          Get in Touch
+        </a>
       </motion.div>
     </motion.main>
   );

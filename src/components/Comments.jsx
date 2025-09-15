@@ -19,7 +19,7 @@ function Comments() {
       id: 1,
       name: "Adge ",
       title: "Grizzy Video Editor",
-      company: "Canada",
+      company: "",
       image: Adge,
       quote:
         "I like it! The editing is clean and nice. Good work man.. your workflow is pretty similar to how I work.",
@@ -27,8 +27,8 @@ function Comments() {
     {
       id: 2,
       name: "Lulhuz Gaming",
-      title: "Product Manager",
-      company: "France | TikTok",
+      title: "TikTok",
+      company: "France",
       image: Lulhuz,
       quote:
         "Monteur très pro, très actif, transparent, qui communique à chaque étape et qui propose des améliorations ainsi que des retouches. Je recommande les yeux fermés !",

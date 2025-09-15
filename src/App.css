@@ -18,3 +18,8 @@ body,
 html {
   overflow-x: hidden; /* double safety */
 }
+@media (max-width: 500px) {
+  * {
+    cursor: default !important;
+  }
+}

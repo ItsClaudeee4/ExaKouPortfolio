@@ -85,8 +85,9 @@ function Footer() {
           <a
             href="https://itsclaudeee4.github.io/Portfolio/"
             className="credits"
+            target="_blank"
           >
-            Designed & Built by Hichem <span className="heart">❤️</span>
+            Designed & Built by Hichem <span className="heart">⚡️</span>
           </a>
         </div>
       </div>

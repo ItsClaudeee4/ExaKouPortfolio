@@ -6,6 +6,7 @@ import capcut from "../assets/capcut.webp";
 import P from "../assets/P.png";
 import photoshop from "../assets/photoshop.png";
 import pr from "../assets/Pr.png";
+import Kinemaster from "../assets/Kinemaster.png";
 import TiltedCard from "../ReactBitComponents/TiltedCard";
 
 function Skills() {
@@ -15,6 +16,7 @@ function Skills() {
     { name: "Photoshop ", percentage: 60, icon: photoshop },
     { name: "Capcut ", percentage: 60, icon: capcut },
     { name: "Picsart ", percentage: 80, icon: P },
+    { name: "Kinemaster ", percentage: 80, icon: Kinemaster },
   ];
 
   return (

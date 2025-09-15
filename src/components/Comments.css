@@ -107,7 +107,7 @@
 
 .profile-image:hover {
   transform: scale(1.05);
-  box-shadow: 0 12px 40px rgba(32, 178, 170, 0.4);
+  box-shadow: 0 12px 40px #f99917;
 }
 
 /* Testimonial Quote */

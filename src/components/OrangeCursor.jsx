@@ -1,95 +1,93 @@
-// components/OrangeCursor.js
 import React, { useState, useEffect, useRef } from "react";
 
 const OrangeCursor = () => {
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
   const [cursorPosition, setCursorPosition] = useState({ x: 0, y: 0 });
   const [isClicking, setIsClicking] = useState(false);
+  const [isVisible, setIsVisible] = useState(true);
   const animationRef = useRef();
 
   useEffect(() => {
-    const updateMousePosition = (e) => {
+    const updateMousePosition = (e) =>
       setMousePosition({ x: e.clientX, y: e.clientY });
-    };
-
     const handleMouseDown = () => setIsClicking(true);
     const handleMouseUp = () => setIsClicking(false);
+    const handleResize = () => setIsVisible(window.innerWidth >= 500);
 
+    handleResize();
     window.addEventListener("mousemove", updateMousePosition);
     window.addEventListener("mousedown", handleMouseDown);
     window.addEventListener("mouseup", handleMouseUp);
+    window.addEventListener("resize", handleResize);
 
     return () => {
       window.removeEventListener("mousemove", updateMousePosition);
       window.removeEventListener("mousedown", handleMouseDown);
       window.removeEventListener("mouseup", handleMouseUp);
+      window.removeEventListener("resize", handleResize);
     };
   }, []);
 
-  // Smooth cursor following with delay
   useEffect(() => {
+    if (!isVisible) return;
+
     const animateCursor = () => {
-      setCursorPosition((prev) => ({
-        x: prev.x + (mousePosition.x - prev.x) * 0.1, // Adjust 0.1 to control delay speed
-        y: prev.y + (mousePosition.y - prev.y) * 0.1,
-      }));
+      const dx = mousePosition.x - cursorPosition.x;
+      const dy = mousePosition.y - cursorPosition.y;
+      const distance = Math.sqrt(dx * dx + dy * dy);
+
+      if (distance < 0.5) {
+        setCursorPosition({ x: mousePosition.x, y: mousePosition.y });
+      } else {
+        const speed = 0.15;
+        setCursorPosition((prev) => ({
+          x: prev.x + dx * speed,
+          y: prev.y + dy * speed,
+        }));
+      }
+
       animationRef.current = requestAnimationFrame(animateCursor);
     };
 
     animationRef.current = requestAnimationFrame(animateCursor);
+    return () => cancelAnimationFrame(animationRef.current);
+  }, [mousePosition, cursorPosition, isVisible]);
 
-    return () => {
-      if (animationRef.current) {
-        cancelAnimationFrame(animationRef.current);
-      }
-    };
-  }, [mousePosition]);
+  if (!isVisible) return null;
 
   return (
     <>
-      {/* Big circles with delay */}
+      {/* Big circle border */}
       <div
-        className="fixed transition-transform duration-100 pointer-events-none"
+        className="fixed pointer-events-none"
         style={{
-          left: cursorPosition.x - 20,
-          top: cursorPosition.y - 20,
-          transform: isClicking ? "scale(0.8)" : "scale(1)",
-          zIndex: 99999, // 🔥 Always on top
+          left: cursorPosition.x - 13,
+          top: cursorPosition.y - 13,
+          width: "30px",
+          height: "30px",
+          borderRadius: "50%",
+          border: "2px solid #f99917",
+          transform: isClicking ? "scale(0.7)" : "scale(1)",
+          transition: "transform 0.15s ease-out",
+          zIndex: 99999,
         }}
-      >
-        {/* Outer glow ring */}
-        <div className="absolute inset-0 w-10 h-10 rounded-full bg-orange-500/20 blur-md animate-pulse"></div>
+      ></div>
 
-        {/* Middle ring */}
-        <div className="absolute inset-2 w-6 h-6 rounded-full border border-orange-400/60"></div>
-
-        {/* Inner core */}
-        <div className="absolute inset-3 w-4 h-4 rounded-full bg-orange-500 shadow-lg shadow-orange-500/50"></div>
-      </div>
-
-      {/* Small center dot - instant follow */}
+      {/* Small dot */}
       <div
         className="fixed pointer-events-none z-[51]"
         style={{
-          left: mousePosition.x - 1,
-          top: mousePosition.y - 1,
+          left: mousePosition.x - 2,
+          top: mousePosition.y - 2,
+          width: "8px",
+          height: "8px",
+          borderRadius: "50%",
+          backgroundColor: "#f99917",
+          transform: isClicking ? "scale(1.5)" : "scale(1)",
+          transition: "transform 0.15s ease-out",
+          boxShadow: "0 0 5px #f99917",
         }}
-      >
-        <div className="w-2 h-2 rounded-full bg-orange-300"></div>
-      </div>
-
-      {/* Ripple effect on click */}
-      {isClicking && (
-        <div
-          className="fixed pointer-events-none z-40"
-          style={{
-            left: cursorPosition.x - 30,
-            top: cursorPosition.y - 30,
-          }}
-        >
-          <div className="w-15 h-15 rounded-full border-2 border-orange-400/40 animate-ping"></div>
-        </div>
-      )}
+      ></div>
     </>
   );
 };
