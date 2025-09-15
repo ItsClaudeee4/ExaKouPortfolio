@@ -211,7 +211,7 @@ function About() {
 
   const expertise = [
     { skill: "Video Editing Short Form", percentage: 95 },
-    { skill: "Video Editing Longform", percentage: 75 },
+    { skill: "Video Editing Long form", percentage: 75 },
     { skill: "Account Management", percentage: 85 },
     { skill: "Thumbnail Design", percentage: 70 },
   ];
